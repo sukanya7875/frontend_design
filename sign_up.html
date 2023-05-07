@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registration Form</title>
+    <style>
+      body {
+        background-image: url(main_page.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100%;
+        text-align: center;
+        color: white;
+
+        border: 3px solid #f1f1f1;
+			  width: 300px;
+			  margin: auto;
+			  margin-top: 50px;
+			  padding: 20px;
+			  border-radius: 5px;
+      }
+      
+      button {
+			background-color: #4CAF50;
+			color: white;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			width: 100%;
+		  }
+
+      button:hover {
+			  background-color: #45a049;
+		  }
+
+    </style>
+    <script>
+      function validateForm() {
+        var regId = document.forms["registration"]["regId"].value;
+        var username = document.forms["registration"]["username"].value;
+        var password = document.forms["registration"]["password"].value;
+        var email = document.forms["registration"]["email"].value;
+        var mobile = document.forms["registration"]["mobile"].value;
+        var dob = document.forms["registration"]["dob"].value;
+
+        var regIdPattern = /^[0-9A-Z]{8}$/;
+        var usernamePattern = /^[A-Za-z]+$/;
+        var passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=.*[!]).{8,}$/;
+        var emailPattern = /\S+@\S+\.\S+/;
+        var mobilePattern = /^[1-9]\d{9}$/;
+        var dobPattern = /^(0[1-9]|[12][0-9]|3[01])(0[1-9]|1[012])\d{4}$/;
+
+        if (!regId.match(regIdPattern)) {
+          alert("Please enter a valid registration ID.");
+          return false;
+        }
+
+        if (!username.match(usernamePattern)) {
+          alert("Username should not have any digits.");
+          return false;
+        }
+
+        if (!password.match(passwordPattern)) {
+          alert(
+            "Password should have at least one small case letter, an uppercase letter, a digit, a special character, and a minimum length of 8."
+          );
+          return false;
+        }
+
+        if (!email.match(emailPattern)) {
+          alert("Please enter a valid email address.");
+          return false;
+        }
+
+        if (!mobile.match(mobilePattern)) {
+          alert("Please enter a valid 10-digit mobile number.");
+          return false;
+        }
+
+        if (!dob.match(dobPattern)) {
+          alert("Please enter a valid date of birth (DDMMYYYY).");
+          return false;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h2>Registration Form</h2>
+    <form name="registration" onsubmit="return validateForm()" method="post">
+      <div class="container">
+        <label for="regId">Registration ID:</label>
+        <input type="text" id="regId" name="regId" required placeholder="1234567SU"><br><br>
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required placeholder="Suku"><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required placeholder="Suku@123"><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required placeholder="suku71@123"><br><br>
+
+        <label for="mobile">Mobile:</label>
+        <input type="tel" id="mobile" name="mobile" required placeholder="1234567890"><br><br>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="text" id="dob" name="dob" required placeholder="dd/mm/yy"><br><br>
+
+        <button type="submit">Sign up</button>
+        <button type="reset"> Cancel </button>
+      </div>
+    </form>
+  </body>
+</html>
